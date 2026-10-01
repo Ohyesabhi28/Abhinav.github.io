@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Abhinav Nair — AI/ML Engineer & Backend Developer</title>
 <meta name="description" content="Portfolio of Abhinav Nair, an AI/ML Engineer and Backend Developer specializing in ML pipelines, serverless systems, and AWS."/>
+<meta name="theme-color" content="#282C33"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Abhinav Nair — AI/ML Engineer &amp; Backend Developer"/>
+<meta property="og:description" content="ML pipelines, serverless AWS systems and multimodal deep learning. See projects, experience and chat with my resume."/>
+<meta property="og:image" content="hero_avatar.png"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%23282C33'/%3E%3Ctext x='50' y='68' font-size='52' font-family='monospace' font-weight='700' text-anchor='middle' fill='%23C778DD'%3E%23AN%3C/text%3E%3C/svg%3E"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet"/>
@@ -44,6 +50,13 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
 
 a { text-decoration: none; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.skip-link {
+  position: fixed; left: 16px; top: -60px; z-index: 100000;
+  background: var(--accent); color: var(--bg); padding: 8px 16px;
+  font-family: var(--font-mono); font-size: 13px; transition: top 0.2s;
+}
+.skip-link:focus { top: 12px; }
 ul { list-style: none; }
 
 /* ============================================================
@@ -68,7 +81,7 @@ ul { list-style: none; }
 .loader-bar {
   height: 100%; width: 0;
   background: var(--accent);
-  animation: loadBar 1.8s ease forwards;
+  animation: loadBar 0.9s ease forwards;
 }
 @keyframes loadBar { to { width: 100%; } }
 .loader-text {
@@ -126,7 +139,7 @@ nav {
   display: flex; align-items: center; gap: 4px;
 }
 .nav-logo span { color: var(--accent); }
-.nav-links { display: flex; gap: 32px; }
+.nav-links { display: flex; gap: 24px; }
 .nav-links a {
   font-family: var(--font-mono);
   font-size: 14px; color: var(--text);
@@ -196,12 +209,14 @@ section {
   padding-top: 68px;
 }
 .hero-inner {
-  display: grid; grid-template-columns: 1fr 450px;
-  gap: 60px; align-items: center;
-  width: 100%; max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0, 1fr) 400px;
+  gap: 48px; align-items: center;
+  width: 100%; max-width: 1280px; margin: 0 auto;
   position: relative;
   z-index: 2;
 }
+/* keep the text above the decorative wireframes */
+.hero-inner > div:first-child { position: relative; z-index: 3; }
 .hero-tag {
   font-family: var(--font-mono);
   font-size: 13px; color: var(--text);
@@ -213,8 +228,9 @@ section {
 .hero-tag-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent2); }
 .hero-name {
   font-family: var(--font-mono);
-  font-size: clamp(28px, 4.5vw, 52px);
+  font-size: clamp(28px, 3.8vw, 48px);
   font-weight: 700; line-height: 1.25;
+  letter-spacing: -0.01em;
   color: var(--white); margin-bottom: 20px;
 }
 .hero-name em { font-style: normal; color: var(--accent); }
@@ -243,14 +259,14 @@ section {
 .btn-resume {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 10px 24px;
-  border: 1px solid var(--accent2); background: rgba(86, 182, 194, 0.1); color: var(--accent2);
+  border: 1px solid var(--accent2); background: rgba(152, 195, 121, 0.1); color: var(--accent2);
   font-family: var(--font-mono); font-size: 14px; font-weight: 600;
   cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); border-radius: 2px;
-  box-shadow: 0 0 12px rgba(86, 182, 194, 0.15);
+  box-shadow: 0 0 12px rgba(152, 195, 121, 0.15);
 }
 .btn-resume:hover {
   background: var(--accent2); color: var(--bg);
-  box-shadow: 0 0 24px rgba(86, 182, 194, 0.4);
+  box-shadow: 0 0 24px rgba(152, 195, 121, 0.4);
   transform: translateY(-2px);
 }
 
@@ -259,7 +275,7 @@ section {
   position: relative; display: flex; align-items: center; justify-content: center;
 }
 .hero-img-wrap {
-  width: 100%; max-width: 450px; position: relative;
+  width: 100%; max-width: 400px; position: relative;
   z-index: 1;
 }
 .hero-img-wrap img {
@@ -270,7 +286,7 @@ section {
 /* Recreated Figma Wireframes */
 .hero-geo-decor {
   position: absolute;
-  top: 10%; left: -20%;
+  top: 10%; left: 0;
   width: 100%; height: 100%;
   pointer-events: none;
   z-index: 0;
@@ -301,7 +317,7 @@ section {
 /* Recreated Status Box */
 .hero-status-box {
   position: absolute;
-  bottom: 10%; left: 50%; transform: translateX(-50%);
+  bottom: 16%; left: 50%; transform: translateX(-50%);
   width: 90%; max-width: 320px;
   background: rgba(40,44,51,0.85);
   border: 1px solid rgba(199,120,221,0.3);
@@ -323,9 +339,6 @@ section {
   border-radius: 2px;
 }
 
-/* ============================================================
-   QUOTE
-============================================================ */
 /* ============================================================
    QUOTE
 ============================================================ */
@@ -382,7 +395,7 @@ section {
 .projects-category-title .hash { color: var(--accent); }
 .projects-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px; max-width: 1100px;
+  gap: 28px; max-width: 1100px;
   margin-bottom: 16px;
 }
 .project-card {
@@ -393,29 +406,56 @@ section {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow: hidden;
 }
+.project-card { position: relative; }
+.project-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 2;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+}
+.project-card:hover::before { transform: scaleX(1); }
 .project-card:hover { 
   border-color: var(--accent); 
   transform: translateY(-8px);
-  box-shadow: 0 10px 30px -10px rgba(199,120,221,0.15);
+  box-shadow: 0 16px 36px -12px rgba(199,120,221,0.25);
 }
 .project-thumb {
-  width: 100%; height: 180px; overflow: hidden;
+  position: relative;
+  width: 100%; aspect-ratio: 16 / 9; overflow: hidden;
   border-bottom: 1px solid rgba(171, 178, 191, 0.15);
   background: #1e2229;
   display: flex; align-items: center; justify-content: center;
 }
-.project-thumb img { width: 100%; height: 100%; object-fit: cover; }
-.project-stack {
-  padding: 10px 16px;
-  font-family: var(--font-mono); font-size: 12px;
-  color: var(--text); opacity: 0.65;
-  border-bottom: 1px solid rgba(171, 178, 191, 0.1);
-  display: flex; flex-wrap: wrap; gap: 8px;
+.project-thumb img {
+  width: 100%; height: 100%; object-fit: cover; object-position: top center;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-.project-body { padding: 20px 16px; }
+.project-card[data-fit="contain"] .project-thumb { background: #fff; }
+.project-card[data-fit="contain"] .project-thumb img { object-fit: contain; object-position: center; padding: 6px; }
+.project-card:hover .project-thumb img { transform: scale(1.05); }
+.project-thumb::after {
+  content: 'View case study →';
+  position: absolute; inset: auto 0 0 0; padding: 28px 16px 10px;
+  background: linear-gradient(to top, rgba(30, 34, 41, 0.92), transparent);
+  font-family: var(--font-mono); font-size: 12px; color: var(--white);
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+.project-card:hover .project-thumb::after { opacity: 1; transform: none; }
+.project-stack {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(171, 178, 191, 0.1);
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.project-stack span {
+  font-family: var(--font-mono); font-size: 11px; color: var(--text);
+  background: rgba(171, 178, 191, 0.08); border: 1px solid rgba(171, 178, 191, 0.15);
+  padding: 2px 8px; border-radius: 2px;
+}
+.project-body { padding: 20px 16px; display: flex; flex-direction: column; flex: 1; }
 .project-title {
-  font-family: var(--font-mono); font-size: 17px; font-weight: 600;
-  color: var(--white); margin-bottom: 6px;
+  font-family: var(--font-mono); font-size: 17px; font-weight: 600; line-height: 1.35;
+  color: var(--white); margin-bottom: 10px;
 }
 .project-desc {
   font-size: 14px; color: var(--text);
@@ -427,7 +467,7 @@ section {
   padding: 6px 10px; border-left: 2px solid var(--accent);
   background: rgba(199,120,221,0.05);
 }
-.project-links { display: flex; gap: 12px; }
+.project-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto; }
 .proj-btn {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 6px 16px;
@@ -696,7 +736,6 @@ section {
 .typing-dot:nth-child(1) { animation-delay: -0.32s; }
 .typing-dot:nth-child(2) { animation-delay: -0.16s; }
 @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
-@keyframes typeBounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
 
 .chat-input-area {
   padding: 14px 20px;
@@ -720,6 +759,7 @@ section {
   display: flex; align-items: center; gap: 6px;
 }
 .chat-send-btn:hover { background: var(--accent); color: var(--white); }
+.chat-send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .suggested-questions {
   display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; max-width: 760px;
 }
@@ -841,6 +881,22 @@ section {
 .contact-box-item svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; }
 .contact-box-item:last-child { margin-bottom: 0; }
 
+.contact-form { display: flex; flex-direction: column; gap: 10px; }
+.contact-form input, .contact-form textarea {
+  background: var(--bg); border: 1px solid rgba(171, 178, 191, 0.2);
+  border-radius: 2px; padding: 10px 14px;
+  color: var(--white); font-family: var(--font-mono); font-size: 13px;
+  outline: none; transition: border-color 0.25s; width: 100%; resize: vertical;
+}
+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
+.contact-form ::placeholder { color: var(--text); opacity: 0.5; }
+.contact-form .hp { position: absolute; left: -9999px; }
+.contact-form button { justify-content: center; }
+.contact-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+.form-status { font-family: var(--font-mono); font-size: 12px; min-height: 18px; }
+.form-status.ok { color: var(--accent2); }
+.form-status.err { color: #e06c75; }
+
 /* ============================================================
    FOOTER
 ============================================================ */
@@ -877,6 +933,7 @@ footer {
 .reveal.delay-2 { transition-delay: .2s; }
 .reveal.delay-3 { transition-delay: .3s; }
 .reveal.delay-4 { transition-delay: .4s; }
+.reveal.delay-5 { transition-delay: .5s; }
 
 /* ============================================================
    RESPONSIVE
@@ -904,6 +961,12 @@ footer {
   .skills-row { grid-template-columns: 1fr; }
   .certs-grid { grid-template-columns: 1fr; }
 }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  .loader-bar { width: 100%; }
+}
 @keyframes floatOrb {
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-30px) scale(1.1); }
@@ -918,7 +981,7 @@ footer {
 .contacts-orb-2 {
   position: absolute; left: 10%; bottom: -80px;
   width: 250px; height: 250px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(86, 182, 194, 0.1) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(152, 195, 121, 0.1) 0%, transparent 60%);
   pointer-events: none; z-index: 0;
   animation: floatOrb 6s infinite ease-in-out reverse;
 }
@@ -928,9 +991,202 @@ footer {
 .fade-out {
   opacity: 0 !important;
 }
+
+/* ============================================================
+   NAV: search button + earlier collapse (8 links need room)
+============================================================ */
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-logo, .kbd-btn { white-space: nowrap; }
+.kbd-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; border: 1px solid rgba(171,178,191,0.3);
+  color: var(--text); font-family: var(--font-mono); font-size: 12px;
+  padding: 4px 10px; border-radius: 2px; cursor: pointer; transition: 0.2s;
+}
+.kbd-btn:hover { border-color: var(--accent); color: var(--accent); }
+.kbd-btn kbd { font-family: var(--font-mono); font-size: 11px; opacity: 0.6; }
+.nav-links { gap: 20px; }
+.nav-links a { font-size: 13px; }
+@media (max-width: 1150px) {
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+}
+@media (max-width: 700px) { .kbd-btn kbd { display: none; } }
+
+/* ============================================================
+   HERO ROLE LINE
+============================================================ */
+.hero-roles {
+  font-family: var(--font-mono); font-size: clamp(14px, 1.6vw, 17px);
+  color: var(--accent2); margin-bottom: 18px; min-height: 1.6em;
+}
+.hero-roles .ps { color: var(--accent); margin-right: 8px; }
+.hero-roles .caret { color: var(--accent); animation: blink 1s step-end infinite; }
+
+/* ============================================================
+   TERMINAL
+============================================================ */
+#terminal { padding-top: 40px; }
+.term {
+  max-width: 820px; border: 1px solid rgba(171,178,191,0.25);
+  border-radius: 2px; overflow: hidden; background: #1e2229; cursor: text;
+}
+.term-bar {
+  display: flex; align-items: center; gap: 12px; padding: 10px 16px;
+  background: var(--surface); border-bottom: 1px solid rgba(171,178,191,0.15);
+}
+.term-bar .chat-title-bar { margin-left: 4px; }
+.term-body { padding: 16px 20px; height: 340px; overflow-y: auto; overflow-x: hidden; font-family: var(--font-mono); font-size: 13px; line-height: 1.7; }
+.term-body::-webkit-scrollbar { width: 4px; }
+.term-body::-webkit-scrollbar-thumb { background: rgba(199,120,221,0.3); }
+.t-line { white-space: pre-wrap; word-break: break-word; color: var(--text); }
+.t-line b { color: var(--white); }
+.t-echo .t-ps, .t-input-row .t-ps { color: var(--accent2); margin-right: 8px; }
+.t-dim { opacity: 0.6; }
+.t-acc { color: var(--accent); }
+.t-amber { color: var(--amber); }
+.t-cmd { color: var(--accent); cursor: pointer; border-bottom: 1px dashed rgba(199,120,221,0.5); }
+.t-cmd:hover { color: var(--white); }
+.t-input-row { display: flex; align-items: center; }
+.t-input {
+  flex: 1; background: transparent; border: none; outline: none;
+  color: var(--white); font-family: var(--font-mono); font-size: 13px;
+}
+
+/* ============================================================
+   PROJECT CARD EXTRAS + MODAL
+============================================================ */
+.project-card[data-project] { cursor: pointer; }
+button.proj-btn { background: transparent; }
+.proj-btn.primary { border-color: var(--accent); color: var(--accent); }
+.proj-btn.primary:hover { background: rgba(199,120,221,0.1); }
+body.modal-open { overflow: hidden; }
+dialog.modal {
+  border: 1px solid var(--accent); background: var(--surface); color: var(--text);
+  width: min(880px, calc(100% - 32px)); max-height: 90vh; padding: 0;
+  margin: auto; border-radius: 2px; overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+dialog.modal::backdrop { background: rgba(20,22,26,0.7); backdrop-filter: blur(4px); }
+.modal-scroll { max-height: 90vh; overflow-y: auto; padding: 32px; position: relative; }
+.modal-close {
+  position: absolute; top: 14px; right: 14px; width: 32px; height: 32px;
+  background: transparent; border: 1px solid rgba(171,178,191,0.3); color: var(--text);
+  font-size: 14px; cursor: pointer; border-radius: 2px; transition: 0.2s;
+}
+.modal-close:hover { border-color: var(--accent); color: var(--accent); }
+.pm-period { font-family: var(--font-mono); font-size: 12px; color: var(--accent); margin-bottom: 6px; }
+.pm-title { font-family: var(--font-mono); font-size: clamp(20px, 3vw, 26px); font-weight: 700; color: var(--white); margin-bottom: 6px; padding-right: 40px; }
+.pm-tag { font-size: 14px; color: var(--text); margin-bottom: 24px; }
+.pm-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 28px; }
+.pm-metric { border: 1px solid rgba(199,120,221,0.3); background: rgba(199,120,221,0.05); padding: 14px; }
+.pm-metric-val { font-family: var(--font-mono); font-size: 22px; font-weight: 700; color: var(--accent); }
+.pm-metric-label { font-size: 12px; color: var(--text); margin-top: 2px; }
+.pm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 28px; }
+.pm-h { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+.pm-h .hash { color: var(--accent); }
+.pm-text { font-size: 14px; line-height: 1.7; }
+.pm-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 0; }
+.pm-list li { font-size: 14px; line-height: 1.6; padding-left: 18px; position: relative; }
+.pm-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.pm-block { margin-bottom: 28px; }
+.flow { display: flex; align-items: stretch; overflow-x: auto; padding: 4px 0 8px; }
+.flow-stage { display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+.flow-node {
+  border: 1px solid rgba(199,120,221,0.4); background: rgba(199,120,221,0.06);
+  padding: 8px 12px; text-align: center; font-family: var(--font-mono); min-width: 120px;
+}
+.flow-node b { display: block; font-size: 12px; color: var(--white); font-weight: 600; }
+.flow-node span { display: block; font-size: 11px; color: var(--text); opacity: 0.8; }
+.flow-arrow { align-self: center; color: var(--accent); padding: 0 10px; font-family: var(--font-mono); }
+.chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-family: var(--font-mono); font-size: 12px; color: var(--text);
+  border: 1px solid rgba(171,178,191,0.25); padding: 3px 10px; border-radius: 2px;
+}
+.pm-links { display: flex; gap: 12px; flex-wrap: wrap; }
+.pm-private {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  border: 1px dashed rgba(199,120,221,0.4); background: rgba(199,120,221,0.04); padding: 12px 16px;
+}
+.pm-private-text { font-family: var(--font-mono); font-size: 12px; color: var(--text); }
+@media (max-width: 700px) {
+  .modal-scroll { padding: 24px 18px; }
+  .pm-grid { grid-template-columns: 1fr; gap: 20px; }
+  .flow { flex-direction: column; align-items: stretch; }
+  .flow-arrow { transform: rotate(90deg); padding: 6px 0; }
+  .flow-node { min-width: 0; }
+}
+
+/* skill proof chips */
+.skill-item { flex-wrap: wrap; }
+.skill-proof {
+  font-family: var(--font-mono); font-size: 10px; color: var(--accent);
+  background: rgba(199,120,221,0.08); border: 1px solid rgba(199,120,221,0.3);
+  padding: 0 7px; border-radius: 2px; cursor: pointer; transition: 0.2s;
+}
+.skill-proof:hover { background: var(--accent); color: var(--bg); }
+
+/* ============================================================
+   COMMAND PALETTE
+============================================================ */
+dialog.palette { top: 14vh; margin: 0 auto; width: min(560px, calc(100% - 32px)); }
+.pal-input {
+  width: 100%; background: var(--bg); border: none; border-bottom: 1px solid rgba(171,178,191,0.2);
+  color: var(--white); font-family: var(--font-mono); font-size: 15px; padding: 16px 20px; outline: none;
+}
+.pal-list { max-height: 50vh; overflow-y: auto; padding: 6px 0; }
+.pal-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 9px 20px; font-family: var(--font-mono); font-size: 13px; color: var(--text); cursor: pointer;
+}
+.pal-item .pal-hint { font-size: 11px; opacity: 0.55; }
+.pal-item[aria-selected="true"] { background: rgba(199,120,221,0.12); color: var(--white); }
+.pal-empty { padding: 16px 20px; font-family: var(--font-mono); font-size: 13px; opacity: 0.6; }
+.pal-foot { padding: 8px 20px; border-top: 1px solid rgba(171,178,191,0.15); font-family: var(--font-mono); font-size: 11px; opacity: 0.55; }
+
+/* toast */
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 20px);
+  background: var(--surface); border: 1px solid var(--accent); color: var(--white);
+  font-family: var(--font-mono); font-size: 13px; padding: 10px 18px; z-index: 100001;
+  opacity: 0; pointer-events: none; transition: 0.3s;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ============================================================
+   GITHUB ACTIVITY
+============================================================ */
+.gh-wrap { max-width: 1100px; margin-top: 40px; }
+.gh-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.gh-card {
+  border: 1px solid rgba(171,178,191,0.2); background: var(--surface);
+  padding: 16px; border-radius: 2px; display: flex; flex-direction: column; gap: 8px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.gh-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+.gh-name { font-family: var(--font-mono); font-size: 14px; font-weight: 600; color: var(--white); word-break: break-word; }
+.gh-desc { font-size: 13px; line-height: 1.5; flex: 1; }
+.gh-meta { display: flex; gap: 14px; font-family: var(--font-mono); font-size: 11px; opacity: 0.75; }
+.gh-meta .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 5px; }
+.gh-chart { max-width: 100%; border: 1px solid rgba(171,178,191,0.15); padding: 10px; background: rgba(255,255,255,0.02); }
+.gh-chart img { display: block; max-width: 100%; height: auto; }
+.gh-note { font-family: var(--font-mono); font-size: 12px; opacity: 0.6; margin-top: 10px; }
+
+/* recruiter summary (chat) */
+.rec-card b { color: var(--white); }
+.rec-card ul { margin: 6px 0 10px 16px; list-style: disc; }
+.rec-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.rec-actions a, .rec-actions button {
+  font-family: var(--font-mono); font-size: 12px; color: var(--accent);
+  border: 1px solid var(--accent); background: transparent; padding: 4px 12px; border-radius: 2px; cursor: pointer;
+}
+.rec-actions a:hover, .rec-actions button:hover { background: var(--accent); color: var(--bg); }
+.sq-chip.hot { border-color: var(--accent2); color: var(--accent2); }
 </style>
 </head>
 <body>
+<a href="#projects" class="skip-link">Skip to content</a>
 
 <!-- LOADER -->
 <div id="loader">
@@ -942,13 +1198,13 @@ footer {
 <!-- LEFT SIDEBAR -->
 <div class="sidebar">
   <div class="sidebar-links">
-    <a href="https://github.com/" target="_blank" title="GitHub" aria-label="GitHub">
+    <a href="https://github.com/Ohyesabhi28" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
     </a>
-    <a href="https://linkedin.com/" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+    <a href="https://linkedin.com/in/abhinav2825" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
     </a>
-    <a href="mailto:am.sc.u4aie23005@am.students.amrita.edu" title="Email" aria-label="Email">
+    <a href="mailto:abhinavnair2n5@gmail.com" title="Email" aria-label="Email">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
     </a>
   </div>
@@ -963,18 +1219,25 @@ footer {
     <li><a href="#projects"><span>#</span>projects</a></li>
     <li><a href="#skills"><span>#</span>skills</a></li>
     <li><a href="#about-me"><span>#</span>about-me</a></li>
+    <li><a href="#experience"><span>#</span>experience</a></li>
+    <li><a href="#certs"><span>#</span>certs</a></li>
     <li><a href="#ask-ai"><span>#</span>ask-ai</a></li>
     <li><a href="#contacts"><span>#</span>contacts</a></li>
   </ul>
-  <button class="nav-burger" id="navBurger" onclick="toggleMenu()" aria-label="Open menu">
+  <div class="nav-right">
+    <button class="kbd-btn" id="paletteBtn" type="button" aria-label="Open command palette">⌕ search <kbd>Ctrl K</kbd></button>
+    <button class="nav-burger" id="navBurger" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
     <span></span><span></span><span></span>
   </button>
+  </div>
 </nav>
 <div class="nav-mobile-menu" id="mobileMenu">
   <a href="#home" onclick="toggleMenu()"><span>#</span>home</a>
   <a href="#projects" onclick="toggleMenu()"><span>#</span>projects</a>
   <a href="#skills" onclick="toggleMenu()"><span>#</span>skills</a>
   <a href="#about-me" onclick="toggleMenu()"><span>#</span>about-me</a>
+  <a href="#experience" onclick="toggleMenu()"><span>#</span>experience</a>
+  <a href="#certs" onclick="toggleMenu()"><span>#</span>certs</a>
   <a href="#ask-ai" onclick="toggleMenu()"><span>#</span>ask-ai</a>
   <a href="#contacts" onclick="toggleMenu()"><span>#</span>contacts</a>
 </div>
@@ -994,13 +1257,14 @@ footer {
         <em>AI/ML engineer</em><br/>
         and <em>backend developer</em>
       </h1>
+      <div class="hero-roles reveal delay-2" aria-hidden="true"><span class="ps">$</span><span id="roleText"></span><span class="caret">▍</span></div>
       <p class="hero-desc reveal delay-2">
         Computer Science (AI) undergraduate with a strong foundation in analytical problem-solving, data engineering, and Python-based automation. Experienced in building and shipping data-driven systems end-to-end — from predictive models to production APIs.
       </p>
       <div class="hero-btns reveal delay-3">
         <a href="#contacts" class="btn-outline">Contact me !!</a>
         <a href="#projects" class="btn-fill">View Projects →</a>
-        <a href="Abhinav_recent2.pdf" download="Abhinav_Nair_Resume.pdf" class="btn-resume">
+        <a href="Abhinav_EY_resume.pdf" download="Abhinav_Nair_Resume.pdf" class="btn-resume">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Resume
         </a>
@@ -1024,7 +1288,7 @@ footer {
       </div>
 
       <div class="hero-img-wrap">
-        <img src="hero_avatar_cutout.png" alt="Abhinav Nair"/>
+        <img src="hero_avatar_cutout.png" alt="Portrait of Abhinav Nair" fetchpriority="high"/>
         <div class="hero-status-box">
           <span class="hero-status-icon"></span> Agentic AI
         </div>
@@ -1050,6 +1314,24 @@ footer {
 </section>
 
 <!-- ============================================================
+     TERMINAL
+============================================================ -->
+<section id="terminal">
+  <div class="section-heading reveal"><span class="hash">#</span>terminal</div>
+  <p class="section-sub reveal delay-1">Prefer the command line? Type <code>help</code></p>
+  <div class="term reveal delay-2" id="term">
+    <div class="term-bar">
+      <div class="chat-dots"><span class="cd-r"></span><span class="cd-y"></span><span class="cd-g"></span></div>
+      <div class="chat-title-bar">visitor@abhinav: ~</div>
+    </div>
+    <div class="term-body" id="termBody" aria-live="polite">
+      <div id="termOut"></div>
+      <div class="t-input-row"><span class="t-ps">visitor@abhinav:~$</span><input class="t-input" id="termIn" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      PROJECTS
 ============================================================ -->
 <section id="projects">
@@ -1061,70 +1343,62 @@ footer {
   </div>
 
   <div class="projects-grid">
-    <div class="project-card reveal delay-2">
+    <div data-project="meme" data-fit="contain" class="project-card reveal delay-2">
       <div class="project-thumb">
-        <img src="nlp.jpeg" alt="Meme Classification project thumbnail" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--font-mono);color:var(--accent);font-size:18px;\'>Multimodal AI</div>'"/>
+        <img loading="lazy" src="nlp.jpeg" alt="Meme Classification project thumbnail" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--font-mono);color:var(--accent);font-size:18px;\'>Multimodal AI</div>'"/>
       </div>
-      <div class="project-stack">PyTorch&nbsp;&nbsp;Hugging Face&nbsp;&nbsp;Swin Transformer&nbsp;&nbsp;Malayalam-BERT</div>
+      <div class="project-stack"><span>PyTorch</span><span>Hugging Face</span><span>Swin Transformer</span><span>Malayalam-BERT</span></div>
       <div class="project-body">
         <div class="project-title">Multimodal Political Meme Classification</div>
         <p class="project-desc">Developed a multimodal hierarchical classification model integrating Malayalam-BERT and Swin-Tiny. Built an end-to-end deep learning pipeline with 5-fold cross-validation and feature fusion.</p>
         <div class="project-highlight">🔗 Improved macro F1-score by 28.1% · Apr 2026 – Jul 2026</div>
         <div class="project-links">
-          <a href="#" class="proj-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            View &lt;~&gt;
-          </a>
+          <button type="button" class="proj-btn primary" data-open="meme">Case study →</button>
         </div>
       </div>
     </div>
 
-    <div class="project-card reveal delay-3">
+    <div data-project="neurotidy" class="project-card reveal delay-3">
       <div class="project-thumb">
-        <img src="neurotidy_ss.png" alt="NeuroTidy project thumbnail" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--font-mono);color:var(--accent);font-size:18px;\'>NeuroTidy</div>'"/>
+        <img loading="lazy" src="neurotidy_ss.png" alt="NeuroTidy project thumbnail" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--font-mono);color:var(--accent);font-size:18px;\'>NeuroTidy</div>'"/>
       </div>
-      <div class="project-stack">Python&nbsp;&nbsp;AWS Lambda&nbsp;&nbsp;Amazon Bedrock&nbsp;&nbsp;REST API</div>
+      <div class="project-stack"><span>Python</span><span>AWS Lambda</span><span>Amazon Bedrock</span><span>REST API</span></div>
       <div class="project-body">
         <div class="project-title">NeuroTidy — AI Code Review Platform</div>
         <p class="project-desc">Serverless AI-powered code analysis platform on AWS Lambda combining custom static analysis rules with Amazon Bedrock's Claude LLM to automate Python and ML code review workflows.</p>
         <div class="project-highlight">🔗 GitHub PR inline comment posting · Feb 2025 – Apr 2026</div>
         <div class="project-links">
-          <a href="#" class="proj-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            Live &lt;~&gt;
-          </a>
+          <button type="button" class="proj-btn primary" data-open="neurotidy">Case study →</button>
         </div>
       </div>
     </div>
 
-    <div class="project-card reveal delay-3">
+    <div data-project="hpcl" class="project-card reveal delay-3">
       <div class="project-thumb">
-        <img src="hpcl.jpeg" alt="HPCL IntelliFlow project thumbnail" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--font-mono);color:var(--accent2);font-size:18px;\'>HPCL IntelliFlow</div>'"/>
+        <img loading="lazy" src="hpcl.jpeg" alt="HPCL IntelliFlow project thumbnail" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--font-mono);color:var(--accent2);font-size:18px;\'>HPCL IntelliFlow</div>'"/>
       </div>
-      <div class="project-stack">Python&nbsp;&nbsp;Pandas&nbsp;&nbsp;NumPy&nbsp;&nbsp;Machine Learning&nbsp;&nbsp;BigQuery</div>
+      <div class="project-stack"><span>Python</span><span>Pandas</span><span>NumPy</span><span>Machine Learning</span><span>BigQuery</span></div>
       <div class="project-body">
         <div class="project-title">HPCL IntelliFlow</div>
         <p class="project-desc">Fuel Station Demand Optimization for HPCL. AI-powered analytics engine analyzing CNG/fuel station utilization patterns using supervised ML models for demand forecasting and time-based usage prediction.</p>
         <div class="project-highlight">🏆 Shortlisted to 3rd evaluation round · Dec 2025 – Mar 2026</div>
         <div class="project-links">
-          <a href="#" class="proj-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            View &lt;~&gt;
-          </a>
+          <button type="button" class="proj-btn primary" data-open="hpcl">Case study →</button>
         </div>
       </div>
     </div>
-    <div class="project-card reveal delay-3">
+    <div data-project="nutriscan" class="project-card reveal delay-3">
       <div class="project-thumb">
-        <img src="nutriscan.png" alt="NutriScan project thumbnail" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--font-mono);color:var(--accent2);font-size:18px;\'>NutriScan</div>'"/>
+        <img loading="lazy" src="nutriscan.png" alt="NutriScan project thumbnail" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--font-mono);color:var(--accent2);font-size:18px;\'>NutriScan</div>'"/>
       </div>
-      <div class="project-stack">Full Stack&nbsp;&nbsp;Web&nbsp;&nbsp;Computer Vision&nbsp;&nbsp;AI Modules</div>
+      <div class="project-stack"><span>React.js</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>Gemini API</span></div>
       <div class="project-body">
         <div class="project-title">NutriScan</div>
-        <p class="project-desc">AI-powered Full Stack web application built to analyze and extract nutritional information. Integrates AI modules to scan labels and provide comprehensive dietary and health insights.</p>
+        <p class="project-desc">Full-stack MERN application that analyzes food images with the Gemini API to estimate nutritional values and give personalized dietary insights, with meal history and interactive dashboards.</p>
         <div class="project-highlight">🔗 Amrita ASC Coursework (22AIE457)</div>
         <div class="project-links">
-          <a href="https://github.com/azure-2k4/NutriScan" target="_blank" class="proj-btn">
+          <button type="button" class="proj-btn primary" data-open="nutriscan">Case study →</button>
+          <a href="https://github.com/azure-2k4/NutriScan" target="_blank" rel="noopener" class="proj-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             GitHub &lt;~&gt;
           </a>
@@ -1133,7 +1407,13 @@ footer {
     </div>
   </div>
 
-  <a href="#" class="view-all-link reveal delay-4">View all —→</a>
+
+  <div class="gh-wrap reveal" id="gh-activity">
+    <div class="projects-category-title"><span class="hash">#</span>github-activity</div>
+    <div class="gh-grid" id="ghGrid"><p class="gh-note">Loading repositories…</p></div>
+    <div class="gh-chart"><img loading="lazy" src="https://ghchart.rshah.org/c778dd/Ohyesabhi28" alt="GitHub contribution graph for Ohyesabhi28" onerror="this.closest('.gh-chart').style.display='none'"/></div>
+    <p class="gh-note">Live from the public GitHub API · <a href="https://github.com/Ohyesabhi28" target="_blank" rel="noopener" style="color:var(--accent)">see all on GitHub</a></p>
+  </div>
 </section>
 
 <!-- ============================================================
@@ -1141,7 +1421,7 @@ footer {
 ============================================================ -->
 <section id="skills">
   <div class="section-heading reveal"><span class="hash">#</span>skills</div>
-  <p class="section-sub reveal delay-1">My technical proficiency</p>
+  <p class="section-sub reveal delay-1">My technical proficiency — tap a tag to see where I used it</p>
 
   <div class="skills-layout">
     <div class="skills-art reveal delay-1">
@@ -1162,15 +1442,15 @@ footer {
           <ul class="skill-list">
             <li class="skill-item">Python</li>
             <li class="skill-item">SQL</li>
-            <li class="skill-item">JavaScript</li>
+            <li class="skill-item">JavaScript<button type="button" class="skill-proof" data-open="nutriscan" title="See where I used this">↗ NutriScan</button></li>
           </ul>
         </div>
         <div class="skill-box">
           <div class="skill-box-title">Backend & Cloud</div>
           <ul class="skill-list">
-            <li class="skill-item">AWS Lambda, API Gateway</li>
-            <li class="skill-item">Amazon S3, Webhooks</li>
-            <li class="skill-item">REST API Development</li>
+            <li class="skill-item">AWS Lambda, API Gateway<button type="button" class="skill-proof" data-open="neurotidy" title="See where I used this">↗ NeuroTidy</button></li>
+            <li class="skill-item">Amazon S3, Webhooks<button type="button" class="skill-proof" data-open="neurotidy" title="See where I used this">↗ NeuroTidy</button></li>
+            <li class="skill-item">REST API Development<button type="button" class="skill-proof" data-open="nutriscan" title="See where I used this">↗ NutriScan</button></li>
           </ul>
         </div>
       </div>
@@ -1178,20 +1458,18 @@ footer {
         <div class="skill-box">
           <div class="skill-box-title">AI & Machine Learning</div>
           <ul class="skill-list">
-            <li class="skill-item">PyTorch, Hugging Face</li>
-            <li class="skill-item">Deep Learning, Prediction</li>
-            <li class="skill-item">Amazon Bedrock</li>
-            <li class="skill-item">NumPy, Pandas, Data Analysis</li>
+            <li class="skill-item">PyTorch, Hugging Face<button type="button" class="skill-proof" data-open="meme" title="See where I used this">↗ Meme classifier</button></li>
+            <li class="skill-item">Deep Learning, Swin Transformer<button type="button" class="skill-proof" data-open="meme" title="See where I used this">↗ Meme classifier</button></li>
+            <li class="skill-item">Scikit-learn, BigQuery ML<button type="button" class="skill-proof" data-open="hpcl" title="See where I used this">↗ HPCL</button></li>
+            <li class="skill-item">Amazon Bedrock (LLMs)<button type="button" class="skill-proof" data-open="neurotidy" title="See where I used this">↗ NeuroTidy</button></li>
           </ul>
         </div>
         <div class="skill-box">
-          <div class="skill-box-title">ML / AI</div>
+          <div class="skill-box-title">Data & Tooling</div>
           <ul class="skill-list">
-            <li class="skill-item">Scikit-learn</li>
-            <li class="skill-item">Pandas / NumPy</li>
-            <li class="skill-item">Amazon Bedrock</li>
-            <li class="skill-item">AST Analysis</li>
-            <li class="skill-item">BigQuery ML</li>
+            <li class="skill-item">NumPy, Pandas, Data Analysis<button type="button" class="skill-proof" data-open="hpcl" title="See where I used this">↗ HPCL</button></li>
+            <li class="skill-item">AST Analysis<button type="button" class="skill-proof" data-open="neurotidy" title="See where I used this">↗ NeuroTidy</button></li>
+            <li class="skill-item">Git, Agile workflows</li>
           </ul>
         </div>
       </div>
@@ -1249,27 +1527,17 @@ footer {
         <div class="about-edu-item">
           <div class="about-edu-degree">B.Tech – Computer Science & Engineering (AI)</div>
           <div class="about-edu-school">Amrita Vishwa Vidyapeetham · 2023–2027</div>
-          <div class="about-edu-score">CGPA: 8.44 / 10</div>
-        </div>
-        <div class="about-edu-item">
-          <div class="about-edu-degree">Class XII – CBSE (MPC)</div>
-          <div class="about-edu-school">Mount Litera Zee School, Goa · 2023</div>
-          <div class="about-edu-score">79.4%</div>
-        </div>
-        <div class="about-edu-item">
-          <div class="about-edu-degree">Class X – CBSE</div>
-          <div class="about-edu-school">Mount Litera Zee School, Goa · 2022</div>
-          <div class="about-edu-score">94%</div>
+          <div class="about-edu-score">CGPA: 8.38 / 10</div>
         </div>
       </div>
 
       <br/>
-      <a href="#contacts" class="btn-outline" style="display:inline-flex;margin-top:8px;">Read more →</a>
+      <a href="#experience" class="btn-outline" style="display:inline-flex;margin-top:8px;">See my experience →</a>
     </div>
 
     <div class="about-art reveal delay-3">
       <div class="about-img-wrap">
-        <img src="about_hoodie.png" alt="Abhinav - About Me"/>
+        <img loading="lazy" src="about_hoodie.png" alt="Abhinav - About Me"/>
       </div>
     </div>
   </div>
@@ -1373,7 +1641,7 @@ footer {
       <div class="chat-title-bar">abhinav@portfolio — resume-ai</div>
       <div class="chat-status-dot"></div>
     </div>
-    <div class="chat-messages" id="chatMessages">
+    <div class="chat-messages" id="chatMessages" aria-live="polite">
       <div class="msg-wrap bot">
         <div class="msg-avatar bot">✦</div>
         <div class="msg bot">Hi there! 👋 I'm Abhinav's AI assistant — trained on his resume. Ask me about his skills, projects, experience, education, or how to contact him!</div>
@@ -1385,17 +1653,18 @@ footer {
       </div>
     </div>
     <div class="chat-input-area">
-      <input type="text" id="chatInput" class="chat-input" placeholder="Ask me anything about Abhinav..." onkeypress="handleChatKeyPress(event)"/>
-      <button class="chat-send-btn" onclick="sendChatMessage()">Send →</button>
+      <input type="text" id="chatInput" aria-label="Ask a question about Abhinav" class="chat-input" placeholder="Ask me anything about Abhinav..." onkeydown="handleChatKeyPress(event)"/>
+      <button class="chat-send-btn" id="chatSend" onclick="sendChatMessage()">Send →</button>
     </div>
   </div>
 
   <div class="suggested-questions reveal delay-3">
-    <div class="sq-chip" onclick="fillAndSend('What are your top skills?')">What are your top skills?</div>
-    <div class="sq-chip" onclick="fillAndSend('Tell me about NeuroTidy')">Tell me about NeuroTidy</div>
-    <div class="sq-chip" onclick="fillAndSend('Do you have any AWS experience?')">AWS experience?</div>
-    <div class="sq-chip" onclick="fillAndSend('How can I contact you?')">How to contact?</div>
-    <div class="sq-chip" onclick="fillAndSend('What is your CGPA?')">What is your CGPA?</div>
+    <button type="button" class="sq-chip hot" onclick="showRecruiterSummary()">⚡ Recruiter mode</button>
+    <button type="button" class="sq-chip" onclick="fillAndSend('What are your top skills?')">What are your top skills?</button>
+    <button type="button" class="sq-chip" onclick="fillAndSend('Tell me about NeuroTidy')">Tell me about NeuroTidy</button>
+    <button type="button" class="sq-chip" onclick="fillAndSend('Do you have any AWS experience?')">AWS experience?</button>
+    <button type="button" class="sq-chip" onclick="fillAndSend('How can I contact you?')">How to contact?</button>
+    <button type="button" class="sq-chip" onclick="fillAndSend('What is your CGPA?')">What is your CGPA?</button>
   </div>
 </section>
 
@@ -1404,7 +1673,7 @@ footer {
 ============================================================ -->
 <section id="contacts">
   <div class="section-heading reveal"><span class="hash">#</span>contacts</div>
-  <p class="section-sub reveal delay-1">Who am i?</p>
+  <p class="section-sub reveal delay-1">Let's work together</p>
 
   <div class="contacts-inner" style="position: relative;">
     <div class="contacts-orb"></div>
@@ -1418,11 +1687,11 @@ footer {
         <span class="hash">#</span>all-media
       </div>
       <div class="contacts-media">
-        <a href="https://github.com/Ohyesabhi28" target="_blank" class="media-link">
+        <a href="https://github.com/Ohyesabhi28" target="_blank" rel="noopener" class="media-link">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
           GitHub
         </a>
-        <a href="https://linkedin.com/in/abhinav2825" target="_blank" class="media-link">
+        <a href="https://linkedin.com/in/abhinav2825" target="_blank" rel="noopener" class="media-link">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           LinkedIn
         </a>
@@ -1441,13 +1710,21 @@ footer {
           abhinavnair2n5@gmail.com
         </div>
         <div class="contact-box-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          +91 9511734025
-        </div>
-        <div class="contact-box-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-          Vallikavu, Kerala, India
+          Kerala, India
         </div>
+      </div>
+      <div class="contact-box">
+        <div class="contact-box-title">Send a message</div>
+        <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact"/>
+          <input class="hp" name="bot-field" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+          <input type="text" name="name" placeholder="Your name" aria-label="Your name" required/>
+          <input type="email" name="email" placeholder="Your email" aria-label="Your email" required/>
+          <textarea name="message" rows="4" placeholder="Your message" aria-label="Your message" required></textarea>
+          <button type="submit" class="btn-fill" id="formBtn">Send →</button>
+          <div class="form-status" id="formStatus" role="status"></div>
+        </form>
       </div>
     </div>
   </div>
@@ -1463,10 +1740,10 @@ footer {
   <div class="footer-right">
     <div class="footer-media-title">Media</div>
     <div class="footer-icons">
-      <a href="https://github.com/Ohyesabhi28" target="_blank" aria-label="GitHub">
+      <a href="https://github.com/Ohyesabhi28" target="_blank" rel="noopener" aria-label="GitHub">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
       </a>
-      <a href="https://linkedin.com/in/abhinav2825" target="_blank" aria-label="LinkedIn">
+      <a href="https://linkedin.com/in/abhinav2825" target="_blank" rel="noopener" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
       </a>
       <a href="mailto:abhinavnair2n5@gmail.com" aria-label="Email">
@@ -1476,18 +1753,27 @@ footer {
   </div>
 </footer>
 
+<dialog class="modal" id="projectModal" aria-labelledby="pmTitle"></dialog>
+<dialog class="modal palette" id="palette" aria-label="Command palette">
+  <input class="pal-input" id="palInput" type="text" placeholder="Type a command or search…" autocomplete="off" role="combobox" aria-expanded="true" aria-controls="palList" aria-label="Command palette search"/>
+  <ul class="pal-list" id="palList" role="listbox"></ul>
+  <div class="pal-foot">↑↓ navigate · Enter select · Esc close</div>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <!-- ============================================================
      JAVASCRIPT
 ============================================================ -->
 <script>
 /* ---- LOADER ---- */
 window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('loader').classList.add('hide'), 1800);
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 900);
 });
 
 /* ---- MOBILE MENU ---- */
 function toggleMenu() {
-  document.getElementById('mobileMenu').classList.toggle('open');
+  const open = document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('navBurger').setAttribute('aria-expanded', open);
 }
 
 /* ---- SCROLL REVEAL ---- */
@@ -1517,7 +1803,7 @@ const quotes = [
   { text: "There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.", author: "Phil Karlton" },
   { text: "A SQL query goes into a bar, walks up to two tables and asks... 'Can I join you?'", author: "Anonymous" },
   { text: "I have not failed. I've just found 10,000 ways that won't compile.", author: "Thomas A. Edison (Probably)" },
-  { text: "Artificial Intelligence is no match for natural stupidity.", author: "Albert Einstein" },
+  { text: "Artificial Intelligence is no match for natural stupidity.", author: "Anonymous" },
   { text: "To understand recursion, you must first understand recursion.", author: "Unknown" },
   { text: "A user interface is like a joke. If you have to explain it, it's not that good.", author: "Martin LeBlanc" }
 ];
@@ -1539,38 +1825,566 @@ setInterval(() => {
   }, 500);
 }, 6000);
 
+
+/* ============================================================
+   SHARED HELPERS
+============================================================ */
+const RESUME_FILE = 'Abhinav_EY_resume.pdf';
+const EMAIL = ['abhinavnair2n5', 'gmail.com'].join('@');
+const GITHUB_USER = 'Ohyesabhi28';
+const LINKEDIN_URL = 'https://linkedin.com/in/abhinav2825';
+const SECTION_IDS = ['home', 'projects', 'skills', 'about-me', 'experience', 'certs', 'ask-ai', 'contacts'];
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function escapeHTML(str) {
+  return str.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+function goTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+}
+function downloadResume() {
+  const a = document.createElement('a');
+  a.href = RESUME_FILE; a.download = 'Abhinav_Nair_Resume.pdf';
+  document.body.appendChild(a); a.click(); a.remove();
+}
+const toastEl = document.getElementById('toast');
+let toastTimer;
+function toast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
+}
+async function copyEmail() {
+  try { await navigator.clipboard.writeText(EMAIL); toast('Email copied: ' + EMAIL); }
+  catch (e) { toast(EMAIL); }
+}
+
+/* ============================================================
+   PROJECT CASE STUDIES (modal)
+============================================================ */
+const PROJECTS = {
+  meme: {
+    title: 'Multimodal Political Meme Classification',
+    period: 'Apr 2026 – Jul 2026',
+    tagline: 'Hierarchical text + image classifier for Malayalam political memes.',
+    metrics: [['+28.1%', 'macro F1 improvement'], ['0.5218', 'macro F1-score'], ['9', 'fusion strategies evaluated'], ['5-fold', 'cross-validation']],
+    problem: 'Political memes carry their meaning in both the Malayalam text and the image, and the minority classes are easy for a model to ignore. A text-only or image-only model misses half the signal.',
+    approach: [
+      'Encoded text with Malayalam-BERT and images with Swin-Tiny.',
+      'Evaluated 9 different fusion strategies and settled on hierarchical fusion.',
+      'Added minority-class augmentation to lift performance on rare classes.',
+      'Built an end-to-end PyTorch training pipeline with 5-fold cross-validation.'
+    ],
+    results: [
+      'Improved macro F1-score by 28.1% through minority-class augmentation.',
+      'Reached a 0.5218 macro F1-score.'
+    ],
+    stack: ['PyTorch', 'Hugging Face', 'Swin Transformer', 'Malayalam-BERT'],
+    flow: [
+      [['Meme image', 'Swin-Tiny encoder'], ['Malayalam text', 'Malayalam-BERT encoder']],
+      [['Feature fusion', '9 strategies compared']],
+      [['Hierarchical classifier', '5-fold cross-validation']],
+      [['Predicted label', 'macro F1 0.5218']]
+    ],
+    links: []
+  },
+  neurotidy: {
+    title: 'NeuroTidy — AI Code Review Platform',
+    period: 'Feb 2025 – Apr 2026',
+    tagline: 'Serverless reviewer for Python and ML code that comments directly on GitHub pull requests.',
+    metrics: [],
+    problem: 'Reviewing Python and ML code by hand is slow and inconsistent. The goal was an automated reviewer that plugs into the normal pull-request workflow.',
+    approach: [
+      'Built the service on AWS Lambda behind a REST API, triggered by GitHub webhooks.',
+      'Wrote custom static-analysis rules that inspect the code structure (AST analysis).',
+      'Sent the code and findings to Claude on Amazon Bedrock for deeper, LLM-based review.',
+      'Posted the combined feedback back as inline comments on the pull request.'
+    ],
+    results: [
+      'Automated inline comment posting on GitHub pull requests.',
+      'Combines deterministic rule checks with LLM reasoning in one review.'
+    ],
+    stack: ['Python', 'AWS Lambda', 'Amazon Bedrock', 'REST API', 'Webhooks'],
+    flow: [
+      [['GitHub PR', 'webhook event']],
+      [['REST API', 'API Gateway']],
+      [['AWS Lambda', 'Python']],
+      [['Static analysis', 'custom rules · AST'], ['Amazon Bedrock', 'Claude LLM']],
+      [['Inline PR comments', 'posted to GitHub']]
+    ],
+    links: []
+  },
+  hpcl: {
+    title: 'HPCL IntelliFlow',
+    period: 'Dec 2025 – Mar 2026',
+    tagline: 'Fuel station demand optimization for HPCL.',
+    metrics: [['3rd round', 'shortlisted in evaluation']],
+    problem: 'Fuel and CNG stations see uneven demand. HPCL needed to understand utilization patterns and predict demand so stations can be run more efficiently.',
+    approach: [
+      'Analyzed CNG and fuel station utilization patterns with Pandas and NumPy.',
+      'Trained supervised ML models for demand forecasting.',
+      'Added time-based usage prediction on top of the forecasts.',
+      'Used BigQuery for the data and modeling work.'
+    ],
+    results: [
+      'Shortlisted to the 3rd evaluation round.',
+      'Delivered demand forecasting and time-based usage prediction.'
+    ],
+    stack: ['Python', 'Pandas', 'NumPy', 'Machine Learning', 'BigQuery'],
+    flow: [
+      [['Station usage data', 'CNG / fuel']],
+      [['Cleaning & features', 'Pandas · NumPy']],
+      [['Supervised ML', 'BigQuery']],
+      [['Demand forecast', 'time-based usage']]
+    ],
+    links: []
+  },
+  nutriscan: {
+    title: 'NutriScan — AI Nutrition Analysis',
+    period: 'Apr 2026 – Jun 2026',
+    tagline: 'Full-stack MERN app that turns a food photo into nutrition insights.',
+    metrics: [],
+    problem: 'Tracking nutrition by hand is tedious. NutriScan estimates nutritional values from a photo of food and turns them into personalized dietary insights.',
+    approach: [
+      'Analyzed food images with the Gemini API to estimate nutritional values.',
+      'Built RESTful APIs with Node.js and Express.js for authentication, meal history and nutrition data.',
+      'Stored users and meals in MongoDB.',
+      'Built a responsive React.js interface with real-time analysis and dashboards for meal and nutrition tracking.'
+    ],
+    results: [
+      'Working full-stack app with login, meal history and dashboards.',
+      'Image-based nutrition estimates with personalized dietary insights.'
+    ],
+    stack: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Gemini API'],
+    flow: [
+      [['React.js UI', 'dashboards']],
+      [['Express + Node.js', 'REST APIs · auth']],
+      [['Gemini API', 'image → nutrition'], ['MongoDB', 'meals & history']]
+    ],
+    links: [{ label: 'GitHub', href: 'https://github.com/azure-2k4/NutriScan' }]
+  }
+};
+
+const projectModal = document.getElementById('projectModal');
+function renderProject(p) {
+  const metrics = p.metrics.length
+    ? `<div class="pm-metrics">${p.metrics.map(m => `<div class="pm-metric"><div class="pm-metric-val">${m[0]}</div><div class="pm-metric-label">${m[1]}</div></div>`).join('')}</div>` : '';
+  const flow = p.flow.map((stage, i) =>
+    (i ? '<div class="flow-arrow" aria-hidden="true">→</div>' : '') +
+    `<div class="flow-stage">${stage.map(n => `<div class="flow-node"><b>${n[0]}</b><span>${n[1]}</span></div>`).join('')}</div>`
+  ).join('');
+  const links = p.links.length
+    ? `<div class="pm-block"><div class="pm-links">${p.links.map(l => `<a class="proj-btn primary" href="${l.href}" target="_blank" rel="noopener">${l.label} &lt;~&gt;</a>`).join('')}</div></div>`
+    : `<div class="pm-block pm-private"><span class="pm-private-text">🔒 Private repo · walkthrough available on request</span><a class="proj-btn primary" href="mailto:${EMAIL}?subject=${encodeURIComponent('Walkthrough request: ' + p.title)}">Request a walkthrough</a></div>`;
+  return `<div class="modal-scroll">
+    <button class="modal-close" data-close aria-label="Close">✕</button>
+    <div class="pm-period">${p.period}</div>
+    <h3 class="pm-title" id="pmTitle">${p.title}</h3>
+    <p class="pm-tag">${p.tagline}</p>
+    ${metrics}
+    <div class="pm-grid">
+      <div><div class="pm-h"><span class="hash" style="color:var(--accent)">#</span>problem</div><p class="pm-text">${p.problem}</p></div>
+      <div><div class="pm-h"><span class="hash" style="color:var(--accent)">#</span>approach</div><ul class="pm-list">${p.approach.map(a => `<li>${a}</li>`).join('')}</ul></div>
+    </div>
+    <div class="pm-block"><div class="pm-h"><span class="hash" style="color:var(--accent)">#</span>architecture</div><div class="flow">${flow}</div></div>
+    <div class="pm-block"><div class="pm-h"><span class="hash" style="color:var(--accent)">#</span>results</div><ul class="pm-list">${p.results.map(r => `<li>${r}</li>`).join('')}</ul></div>
+    <div class="pm-block"><div class="pm-h"><span class="hash" style="color:var(--accent)">#</span>stack</div><div class="chip-row">${p.stack.map(t => `<span class="chip">${t}</span>`).join('')}</div></div>
+    ${links}
+  </div>`;
+}
+function openProject(id) {
+  const p = PROJECTS[id];
+  if (!p) return;
+  closePalette();
+  projectModal.setAttribute('aria-labelledby', 'pmTitle');
+  projectModal.innerHTML = renderProject(p);
+  if (!projectModal.open) projectModal.showModal();
+  document.body.classList.add('modal-open');
+  projectModal.querySelector('.modal-scroll').scrollTop = 0;
+}
+projectModal.addEventListener('click', e => {
+  if (e.target === projectModal || e.target.closest('[data-close]')) projectModal.close();
+});
+projectModal.addEventListener('close', () => document.body.classList.remove('modal-open'));
+
+/* card + skill-chip clicks */
+document.addEventListener('click', e => {
+  const opener = e.target.closest('[data-open]');
+  if (opener) { e.stopPropagation(); openProject(opener.dataset.open); return; }
+  const card = e.target.closest('.project-card[data-project]');
+  if (card && !e.target.closest('a')) openProject(card.dataset.project);
+});
+
+/* ============================================================
+   HERO ROTATING ROLE LINE
+============================================================ */
+(function () {
+  const roles = ['builds ML pipelines', 'ships serverless APIs', 'trains multimodal models', 'explores agentic AI'];
+  const el = document.getElementById('roleText');
+  if (!el) return;
+  if (prefersReducedMotion) { el.textContent = roles[0]; return; }
+  let r = 0, i = 0, deleting = false;
+  function tick() {
+    const word = roles[r];
+    el.textContent = word.slice(0, i);
+    let delay = deleting ? 35 : 70;
+    if (!deleting && i === word.length) { deleting = true; delay = 1600; }
+    else if (deleting && i === 0) { deleting = false; r = (r + 1) % roles.length; delay = 350; }
+    else i += deleting ? -1 : 1;
+    setTimeout(tick, delay);
+  }
+  tick();
+})();
+
+/* ============================================================
+   INTERACTIVE TERMINAL
+============================================================ */
+const termOut = document.getElementById('termOut');
+const termIn = document.getElementById('termIn');
+const termBody = document.getElementById('termBody');
+const termHistory = [];
+let termHistIdx = 0;
+const PS = 'visitor@abhinav:~$';
+
+function tLine(html, cls) {
+  const d = document.createElement('div');
+  d.className = 't-line' + (cls ? ' ' + cls : '');
+  d.innerHTML = html;
+  termOut.appendChild(d);
+  termBody.scrollTop = termBody.scrollHeight;
+}
+const cmdLink = c => `<span class="t-cmd" data-cmd="${c}">${c}</span>`;
+
+const TERM_COMMANDS = {
+  help() {
+    tLine('Available commands:');
+    [['whoami', 'a short intro'], ['ls', 'list projects'], ['cat &lt;project&gt;', 'project summary (meme, neurotidy, hpcl, nutriscan)'],
+     ['open &lt;name&gt;', 'jump to a section or open a case study'], ['skills', 'what I work with'], ['experience', 'where I have worked'],
+     ['education', 'where I study'], ['certs', 'certifications'], ['github', 'open my GitHub'], ['contact', 'how to reach me'],
+     ['resume', 'download my resume'], ['recruiter', '30-second summary'], ['history', 'commands you have run'], ['clear', 'clear the screen']
+    ].forEach(([c, d]) => tLine(`  <b>${c.padEnd(18).replace(/ /g, '&nbsp;')}</b><span class="t-dim">${d}</span>`));
+    tLine('<span class="t-dim">Tip: Tab autocompletes, ↑/↓ browse history, and the highlighted words are clickable.</span>');
+  },
+  whoami() {
+    tLine('<b>Abhinav Nair</b> — AI/ML engineer &amp; backend developer.');
+    tLine('B.Tech CSE (AI) at Amrita Vishwa Vidyapeetham, 2023–2027. I build ML pipelines and serverless backends.');
+    tLine(`<span class="t-dim">Try:</span> ${cmdLink('ls')} <span class="t-dim">·</span> ${cmdLink('skills')} <span class="t-dim">·</span> ${cmdLink('recruiter')}`);
+  },
+  ls(args) {
+    if (args[0] && args[0] !== 'projects') return tLine(`ls: cannot access '${escapeHTML(args[0])}': try <span class="t-dim">ls projects</span>`, 't-amber');
+    Object.keys(PROJECTS).forEach(id => tLine(`  ${cmdLink('cat ' + id)}  <span class="t-dim">${PROJECTS[id].title}</span>`));
+  },
+  cat(args) {
+    const id = (args[0] || '').toLowerCase();
+    const p = PROJECTS[id];
+    if (!p) return tLine(args[0] ? `cat: ${escapeHTML(args[0])}: no such project. Try ${cmdLink('ls')}` : 'usage: cat &lt;project&gt;', 't-amber');
+    tLine(`<b>${p.title}</b> <span class="t-dim">(${p.period})</span>`);
+    tLine(p.tagline);
+    p.metrics.forEach(m => tLine(`  <span class="t-acc">${m[0]}</span> ${m[1]}`));
+    tLine(`<span class="t-dim">stack:</span> ${p.stack.join(', ')}`);
+    tLine(`<span class="t-dim">full case study:</span> ${cmdLink('open ' + id)}`);
+  },
+  skills() {
+    tLine('<b>Languages</b>      Python, SQL, JavaScript');
+    tLine('<b>Backend &amp; Cloud</b> AWS Lambda, API Gateway, S3, Webhooks, REST APIs');
+    tLine('<b>AI &amp; ML</b>        PyTorch, Hugging Face, Swin Transformer, Scikit-learn, BigQuery ML, Amazon Bedrock');
+    tLine('<b>Data &amp; Tools</b>   NumPy, Pandas, AST analysis, Git');
+  },
+  experience() {
+    tLine('<b>Backend Developer Intern</b> · XMinds Infotech <span class="t-dim">(Dec 2025 – Jan 2026)</span>');
+    tLine('<b>Coordinator, Non-Tech Committee</b> · Vidyut National Level Multifest <span class="t-dim">(May 2025)</span>');
+  },
+  education() { tLine('<b>B.Tech CSE (AI)</b> · Amrita Vishwa Vidyapeetham · 2023–2027 · CGPA 8.38/10'); },
+  certs() {
+    ['Gemini Certified University Student — Google', 'Engineer Data for Predictive Modeling with BigQuery ML — Google',
+     'Build a Secure Google Cloud Network — Google', 'Data Analyst - Big 4 Ready — OneRoadmap', 'McKinsey.org Forward Program — McKinsey &amp; Company']
+      .forEach(c => tLine('  • ' + c));
+  },
+  github() { tLine('Opening GitHub…'); window.open('https://github.com/' + GITHUB_USER, '_blank', 'noopener'); },
+  contact() {
+    tLine(`<b>email</b>     <a class="t-cmd" href="mailto:${EMAIL}">${EMAIL}</a>`);
+    tLine(`<b>linkedin</b>  <a class="t-cmd" href="${LINKEDIN_URL}" target="_blank" rel="noopener">linkedin.com/in/abhinav2825</a>`);
+    tLine(`<b>github</b>    <a class="t-cmd" href="https://github.com/${GITHUB_USER}" target="_blank" rel="noopener">github.com/${GITHUB_USER}</a>`);
+    tLine(`<span class="t-dim">or use the form:</span> ${cmdLink('open contacts')}`);
+  },
+  resume() { tLine('Downloading resume…'); downloadResume(); },
+  recruiter() { tLine('Jumping to the recruiter summary…'); showRecruiterSummary(); },
+  open(args) {
+    const t = (args[0] || '').toLowerCase();
+    if (PROJECTS[t]) return openProject(t);
+    const sec = SECTION_IDS.find(s => s === t || s.replace('-', '') === t.replace('-', ''));
+    if (sec) { tLine(`Scrolling to #${sec}…`); return goTo(sec); }
+    tLine(t ? `open: '${escapeHTML(t)}' not found. Sections: ${SECTION_IDS.join(', ')}. Projects: ${Object.keys(PROJECTS).join(', ')}` : 'usage: open &lt;section|project&gt;', 't-amber');
+  },
+  history() { termHistory.forEach((c, i) => tLine(`  ${String(i + 1).padStart(2, ' ').replace(/ /g, '&nbsp;')}  ${escapeHTML(c)}`)); },
+  clear() { termOut.innerHTML = ''; },
+  sudo(args) {
+    if (args.join(' ') === 'hire me') {
+      tLine('[sudo] password for visitor: ********', 't-dim');
+      tLine('<span class="t-acc">Permission granted.</span> Great choice! Opening the contact form…');
+      setTimeout(() => goTo('contacts'), 600);
+    } else tLine('visitor is not in the sudoers file. This incident will be reported. (Try: sudo hire me)', 't-amber');
+  }
+};
+
+function runTerm(raw) {
+  const line = raw.trim();
+  tLine(`<span class="t-ps">${PS}</span>${escapeHTML(line)}`, 't-echo');
+  if (!line) return;
+  termHistory.push(line); termHistIdx = termHistory.length;
+  const [cmd, ...args] = line.split(/\s+/);
+  const fn = TERM_COMMANDS[cmd.toLowerCase()];
+  if (fn) fn(args);
+  else tLine(`command not found: ${escapeHTML(cmd)}. Type ${cmdLink('help')} to see what works.`, 't-amber');
+}
+if (termIn) {
+  tLine('<b>Welcome to my terminal.</b> Type ' + cmdLink('help') + ' to get started, or try ' + cmdLink('whoami') + '.');
+  termIn.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { runTerm(termIn.value); termIn.value = ''; }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); if (termHistIdx > 0) termIn.value = termHistory[--termHistIdx]; }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); termIn.value = termHistIdx < termHistory.length - 1 ? termHistory[++termHistIdx] : (termHistIdx = termHistory.length, ''); }
+    else if (e.key === 'Tab') {
+      e.preventDefault();
+      const parts = termIn.value.split(/\s+/);
+      const last = parts[parts.length - 1].toLowerCase();
+      const pool = parts.length === 1 ? Object.keys(TERM_COMMANDS) : [...Object.keys(PROJECTS), ...SECTION_IDS];
+      const hits = pool.filter(c => c.startsWith(last));
+      if (hits.length === 1) { parts[parts.length - 1] = hits[0]; termIn.value = parts.join(' ') + ' '; }
+      else if (hits.length > 1) tLine(hits.join('  '), 't-dim');
+    }
+  });
+  document.getElementById('term').addEventListener('click', e => {
+    const c = e.target.closest('[data-cmd]');
+    if (c) { runTerm(c.dataset.cmd); return; }
+    if (!e.target.closest('a') && !window.getSelection().toString()) termIn.focus({ preventScroll: true });
+  });
+}
+
+/* ============================================================
+   COMMAND PALETTE (Ctrl/Cmd + K, or "/")
+============================================================ */
+const palette = document.getElementById('palette');
+const palInput = document.getElementById('palInput');
+const palList = document.getElementById('palList');
+let palItems = [], palShown = [], palSel = 0;
+
+function buildPaletteItems() {
+  palItems = [
+    ...SECTION_IDS.map(id => ({ label: 'Go to #' + id, hint: 'section', run: () => goTo(id) })),
+    ...Object.entries(PROJECTS).map(([id, p]) => ({ label: p.title, hint: 'case study', run: () => openProject(id) })),
+    { label: 'Download resume', hint: 'action', run: downloadResume },
+    { label: 'Recruiter summary (30 seconds)', hint: 'action', run: () => showRecruiterSummary() },
+    { label: 'Copy email address', hint: 'action', run: copyEmail },
+    { label: 'Open GitHub', hint: 'link', run: () => window.open('https://github.com/' + GITHUB_USER, '_blank', 'noopener') },
+    { label: 'Open LinkedIn', hint: 'link', run: () => window.open(LINKEDIN_URL, '_blank', 'noopener') },
+    { label: 'Jump to the terminal', hint: 'section', run: () => { goTo('terminal'); setTimeout(() => termIn && termIn.focus({ preventScroll: true }), 500); } }
+  ];
+}
+function renderPalette() {
+  const q = palInput.value.trim().toLowerCase();
+  palShown = palItems.filter(it => !q || (it.label + ' ' + it.hint).toLowerCase().includes(q));
+  palSel = Math.min(palSel, Math.max(palShown.length - 1, 0));
+  palList.innerHTML = palShown.length
+    ? palShown.map((it, i) => `<li class="pal-item" role="option" id="pal-${i}" data-i="${i}" aria-selected="${i === palSel}"><span>${it.label}</span><span class="pal-hint">${it.hint}</span></li>`).join('')
+    : '<li class="pal-empty">No matches</li>';
+  const active = palList.querySelector('[aria-selected="true"]');
+  if (active) { palInput.setAttribute('aria-activedescendant', active.id); active.scrollIntoView({ block: 'nearest' }); }
+}
+function openPalette() {
+  if (!palItems.length) buildPaletteItems();
+  if (projectModal.open) projectModal.close();
+  palInput.value = ''; palSel = 0; renderPalette();
+  if (!palette.open) palette.showModal();
+  palInput.focus();
+}
+function closePalette() { if (palette.open) palette.close(); }
+function runPalette(i) {
+  const it = palShown[i];
+  if (!it) return;
+  closePalette();
+  setTimeout(it.run, 50);
+}
+palInput.addEventListener('input', () => { palSel = 0; renderPalette(); });
+palInput.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown') { e.preventDefault(); palSel = Math.min(palSel + 1, palShown.length - 1); renderPalette(); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); palSel = Math.max(palSel - 1, 0); renderPalette(); }
+  else if (e.key === 'Enter') { e.preventDefault(); runPalette(palSel); }
+});
+palList.addEventListener('click', e => { const li = e.target.closest('[data-i]'); if (li) runPalette(+li.dataset.i); });
+palette.addEventListener('click', e => { if (e.target === palette) closePalette(); });
+document.getElementById('paletteBtn').addEventListener('click', openPalette);
+document.addEventListener('keydown', e => {
+  const tag = (e.target.tagName || '').toLowerCase();
+  const typing = tag === 'input' || tag === 'textarea' || e.target.isContentEditable;
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); palette.open ? closePalette() : openPalette(); }
+  else if (e.key === '/' && !typing && !palette.open && !projectModal.open) { e.preventDefault(); openPalette(); }
+});
+
+/* ============================================================
+   GITHUB ACTIVITY (public API, cached for the session)
+============================================================ */
+/* Repos shown even though they live outside this account. */
+const GH_FEATURED = [
+  { name: 'NutriScan', html_url: 'https://github.com/azure-2k4/NutriScan', description: 'MERN app that analyzes food images with the Gemini API to estimate nutrition and give personalized dietary insights.' }
+];
+/* Only these repos from your account are shown (add or remove names freely). */
+const GH_SHOW = ['Exoplanet_detection_Habitability_Model', 'Recova', 'LM'];
+/* One-line descriptions used when the repo has none on GitHub. A repo with no description is hidden. */
+const GH_DESCRIPTIONS = {
+  'Exoplanet_detection_Habitability_Model': 'Machine learning model for detecting exoplanets and assessing their habitability.'
+};
+
+function ghCard(r) {
+  const meta = [
+    r.language ? `<span><span class="dot"></span>${escapeHTML(r.language)}</span>` : '',
+    typeof r.stargazers_count === 'number' ? `<span>★ ${r.stargazers_count}</span>` : '',
+    r.pushed_at ? `<span>updated ${new Date(r.pushed_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}</span>` : ''
+  ].join('');
+  return `<a class="gh-card" href="${r.html_url}" target="_blank" rel="noopener">
+    <div class="gh-name">${escapeHTML(r.name)}</div>
+    <div class="gh-desc">${escapeHTML(r.description)}</div>
+    ${meta ? `<div class="gh-meta">${meta}</div>` : ''}
+  </a>`;
+}
+
+async function loadGithub() {
+  const grid = document.getElementById('ghGrid');
+  let repos = [];
+  try {
+    try { repos = JSON.parse(sessionStorage.getItem('gh-repos') || 'null') || []; } catch (e) { repos = []; }
+    if (!repos.length) {
+      const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=30`);
+      if (!res.ok) throw new Error(res.status);
+      repos = await res.json();
+      try { sessionStorage.setItem('gh-repos', JSON.stringify(repos)); } catch (e) {}
+    }
+  } catch (e) { repos = []; }
+
+  const own = repos
+    .filter(r => !r.fork && GH_SHOW.includes(r.name))
+    .sort((a, b) => GH_SHOW.indexOf(a.name) - GH_SHOW.indexOf(b.name))
+    .map(r => ({ ...r, description: r.description || GH_DESCRIPTIONS[r.name] || '' }))
+    .filter(r => r.description);
+  const shown = [...GH_FEATURED, ...own].slice(0, 4);
+  grid.innerHTML = shown.map(ghCard).join('');
+}
+const ghSection = document.getElementById('gh-activity');
+if (ghSection) {
+  const ghObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { loadGithub(); ghObs.disconnect(); }
+  }, { rootMargin: '200px' });
+  ghObs.observe(ghSection);
+}
+
+/* ============================================================
+   RECRUITER MODE (static summary, no API call)
+============================================================ */
+function showRecruiterSummary() {
+  goTo('ask-ai');
+  addMsg(`<div class="rec-card"><b>30-second summary</b><ul>
+    <li><b>Who:</b> CS (AI) undergrad at Amrita (2023–2027), CGPA 8.38/10.</li>
+    <li><b>Strengths:</b> machine learning plus backend engineering, from model to API.</li>
+    <li><b>Highlights:</b> +28.1% macro F1 on multimodal meme classification; serverless AI code reviewer on AWS Lambda + Bedrock; HPCL IntelliFlow shortlisted to the 3rd round; backend intern at XMinds Infotech.</li>
+    <li><b>Looking for:</b> internships and full-time roles in backend development and AI engineering.</li></ul>
+    <div class="rec-actions">
+      <button type="button" onclick="downloadResume()">Download resume</button>
+      <a href="mailto:${EMAIL}">Email me</a>
+      <a href="${LINKEDIN_URL}" target="_blank" rel="noopener">LinkedIn</a>
+      <button type="button" onclick="goTo('projects')">See projects</button>
+    </div></div>`, 'bot', true);
+}
+
+/* ---- CONTACT FORM (Netlify Forms) ---- */
+const contactForm = document.getElementById('contactForm');
+contactForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = document.getElementById('formBtn');
+  const status = document.getElementById('formStatus');
+  btn.disabled = true;
+  status.className = 'form-status';
+  status.textContent = 'Sending...';
+  try {
+    const res = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(contactForm)).toString()
+    });
+    if (!res.ok) throw new Error(res.status);
+    contactForm.reset();
+    status.className = 'form-status ok';
+    status.textContent = "Thanks! Your message was sent — I'll get back to you soon.";
+  } catch (err) {
+    status.className = 'form-status err';
+    status.textContent = 'Could not send. Please email me directly instead.';
+  }
+  btn.disabled = false;
+});
+
 /* ---- AI CHATBOT ENGINE ---- */
 const systemPrompt = `You are Abhinav's AI assistant, embedded in his portfolio website. Your job is to answer questions about him to recruiters and visitors.
 Keep your answers brief (1-2 sentences), professional yet friendly, and use HTML formatting like <b>bolding</b> for emphasis.
 
 Here is Abhinav's information:
-- Education: B.Tech in Computer Science & Engineering (AI) at Amrita Vishwa Vidyapeetham (2023–2027), CGPA: 8.44/10.
+- Education: B.Tech in Computer Science & Engineering (AI) at Amrita Vishwa Vidyapeetham (2023–2027), CGPA: 8.38/10.
 - Skills: PyTorch, Hugging Face, Swin Transformer, Scikit-learn, Pandas, Amazon Bedrock, BigQuery ML, Data Engineering, Python, SQL, JavaScript, AWS Lambda, API Gateway, Amazon S3, REST APIs, Webhooks, Google Cloud, Docker, Kubernetes.
 - Experience: Backend Developer Intern at XMinds Infotech (Dec 2025–Jan 2026). Coordinator for Vidyut National Level Multifest.
-- Projects: 1) Multimodal Political Meme Classification (PyTorch, Hugging Face, Malayalam-BERT) 2) NeuroTidy (Serverless AI Code Analyzer using AWS Lambda and Amazon Bedrock), 3) HPCL IntelliFlow (ML-based demand optimization using BigQuery).
+- Projects: 1) Multimodal Political Meme Classification (PyTorch, Hugging Face, Malayalam-BERT) 2) NeuroTidy (Serverless AI Code Analyzer using AWS Lambda and Amazon Bedrock), 3) HPCL IntelliFlow (ML-based demand optimization using BigQuery), 4) NutriScan (MERN app that analyzes food images with the Gemini API for nutrition insights; Apr-Jun 2026; github.com/azure-2k4/NutriScan).
 - Certifications: Google Gemini Certified, BigQuery ML Predictive Modeling, Secure Google Cloud Network, Data Analyst - Big 4 Ready (OneRoadmap), McKinsey Forward Program.
 - Links: GitHub (github.com/Ohyesabhi28), LinkedIn (linkedin.com/in/abhinav2825), Portfolio (myself1625.netlify.app)
-- Contact: abhinavnair2n5@gmail.com, +91 9511734025. Based in Kerala, India.
+- Contact: abhinavnair2n5@gmail.com. Based in Kerala, India. Do not share any phone number; direct people to email or LinkedIn.
 
 If the user asks something completely unrelated to Abhinav, politely steer the conversation back to his professional profile.`;
 
+const chatHistory = [];
+
+/* Only allow a few harmless formatting tags from the model's reply */
+function sanitizeReply(html) {
+  const tpl = document.createElement('template');
+  tpl.innerHTML = html;
+  const allowed = new Set(['B', 'STRONG', 'I', 'EM', 'BR']);
+  tpl.content.querySelectorAll('*').forEach(el => {
+    if (!allowed.has(el.tagName)) el.replaceWith(document.createTextNode(el.textContent));
+  });
+  return tpl.innerHTML;
+}
+
+/* Paste your deployed Lambda Function URL here (see backend/README.md).
+   While empty, the chat uses the free pollinations.ai fallback. */
+const CHAT_API_URL = '';
+
+async function askBackend(messages) {
+  const res = await fetch(CHAT_API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages })
+  });
+  if (!res.ok) throw new Error(res.status);
+  const data = await res.json();
+  return data.reply;
+}
+
+async function askFallback(messages) {
+  const res = await fetch('https://text.pollinations.ai/openai', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages: [{ role: 'system', content: systemPrompt }, ...messages] })
+  });
+  if (!res.ok) throw new Error(res.status);
+  const data = await res.json();
+  return data.choices[0].message.content;
+}
+
 async function getRealAIResponse(userMessage) {
-  try {
-    const res = await fetch('https://text.pollinations.ai/openai', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: userMessage }
-        ]
-      })
-    });
-    const data = await res.json();
-    return data.choices[0].message.content;
-  } catch (e) {
-    return "Oops! My AI brain is offline at the moment. Please reach out to Abhinav directly via the contact section below!";
-  }
+  const messages = [...chatHistory.slice(-6), { role: 'user', content: userMessage }];
+  let raw = null;
+  if (CHAT_API_URL) { try { raw = await askBackend(messages); } catch (e) {} }
+  if (raw == null) { try { raw = await askFallback(messages); } catch (e) {} }
+  if (raw == null) return "Oops! My AI brain is offline at the moment. Please reach out to Abhinav directly via the contact section below!";
+  const reply = sanitizeReply(raw);
+  chatHistory.push({ role: 'user', content: userMessage }, { role: 'assistant', content: reply });
+  return reply;
 }
 
 const chatMessages = document.getElementById('chatMessages');
@@ -1595,7 +2409,7 @@ function typeHTML(el, html, speed) {
   type();
 }
 
-function addMsg(text, sender) {
+function addMsg(text, sender, instant) {
   const wrapper = document.createElement('div');
   wrapper.className = `msg-wrap ${sender}`;
   
@@ -1610,10 +2424,12 @@ function addMsg(text, sender) {
   wrapper.appendChild(d);
   chatMessages.insertBefore(wrapper, typingInd);
   
-  if (sender === 'bot') {
+  if (sender === 'bot' && !instant) {
     typeHTML(d, text, 15);
-  } else {
+  } else if (sender === 'bot') {
     d.innerHTML = text;
+  } else {
+    d.textContent = text;
   }
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
@@ -1622,9 +2438,12 @@ function handleChatKeyPress(e) { if (e.key === 'Enter') sendChatMessage(); }
 
 function fillAndSend(text) { chatInput.value = text; sendChatMessage(); }
 
+const chatSend = document.getElementById('chatSend');
+
 async function sendChatMessage() {
   const text = chatInput.value.trim();
-  if (!text) return;
+  if (!text || chatSend.disabled) return;
+  chatSend.disabled = true;
   addMsg(text, 'user');
   chatInput.value = '';
   typingInd.classList.add('active');
@@ -1634,6 +2453,7 @@ async function sendChatMessage() {
   
   typingInd.classList.remove('active');
   addMsg(botReply, 'bot');
+  chatSend.disabled = false;
 }
 </script>
 </body>
